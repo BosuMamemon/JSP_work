@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>testResult</title>
+	
+	</head>
+	
+	<%
+	// 스크립트 릿(여기에는 자바의 문법이 들어가면 됨)
+	request.getParameter(arg0)
+	%>
+	
+	<body>
+		이름: <br>
+		주소: <br>
+	</body>
+</html>

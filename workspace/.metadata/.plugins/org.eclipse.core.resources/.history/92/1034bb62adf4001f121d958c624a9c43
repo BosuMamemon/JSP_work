@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>scoreInput</title>
+	</head>
+	
+	<body>
+		<form action='scoreResult.jsp' method='get'>
+			<fieldset>
+				<legend>점수 입력</legend>
+				
+				<input type='text' id='name' name='name'>
+				<input type='text' id='kor' name='kor'>
+				<input type='text' id='eng' name='eng'>
+				<input type='text' id='math' name='math'>
+			</fieldset>
+		</form>
+	</body>
+</html>

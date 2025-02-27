@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>scoreInput</title>
+	</head>
+	
+	<body>
+		<form action='scoreResult.jsp' method='get'>
+			<fieldset>
+				<legend>점수 입력</legend>
+				
+				<label for='name'>이름: </label>
+				<input type='text' id='name' name='name'>
+				
+				<label for='kor'>국어: </label>
+				<input type='text' id='kor' name='kor'>
+				
+				<label for='eng'>영어: </label>
+				<input type='text' id='eng' name='eng'>
+				
+				<label for='math'>수학: </label>
+				<input type='text' id='math' name='math'>
+			</fieldset>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>scoreResult</title>
+	</head>
+	
+	<%
+	
+	String name = request.getParameter('name')
+	String kor = request.getParameter('kor')
+	String eng= request.getParameter('eng')
+	String math = request.getParameter('math')
+	
+	%>
+	
+	<body>
+		이름:<br><br>
+		국어:<br><br>
+		영어:<br><br>
+		수학:<br><br>
+	</body>
+</html>

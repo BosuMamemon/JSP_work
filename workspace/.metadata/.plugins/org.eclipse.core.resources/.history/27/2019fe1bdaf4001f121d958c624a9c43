@@ -1,0 +1,14 @@
+package com.exam;
+
+import java.util.Calendar;
+
+public class DateBean {
+	
+	public static void main(String[] args) {
+		
+		Calendar ca = Calendar.getInstance();
+		String[] days = {"일", "월", "화", "수", "목", "금", "토"};
+		
+	}
+
+}
