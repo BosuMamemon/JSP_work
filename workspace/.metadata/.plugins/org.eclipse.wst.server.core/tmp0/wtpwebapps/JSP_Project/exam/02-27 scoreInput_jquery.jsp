@@ -8,7 +8,7 @@
 	</head>
 	
 	<body>
-		<form action='scoreResult.jsp' id="form">
+		<form action='02-28 scoreResult2.jsp' id="form">
 			<fieldset>
 				<legend>점수 입력</legend>
 				

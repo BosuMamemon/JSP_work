@@ -1,0 +1,13 @@
+package com.exam;
+
+public class ScoreBean {
+	
+//	필드
+	private String name;
+	private int kor;
+	private int eng;
+	private int math;
+	
+//	메소드
+
+}
