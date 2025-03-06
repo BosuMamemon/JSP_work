@@ -1,0 +1,62 @@
+package com.address;
+
+public class ZipCode {
+//	멤버
+	private String zipcode;
+	private String sido;
+	private String gugun;
+	private String dong;
+	private String bunji;
+	private int seq;
+	
+//	생성자
+	public ZipCode() {}
+	public ZipCode(String zipcode, String sido, String gugun, String dong, String bunji, int seq) {
+		super();
+		this.zipcode = zipcode;
+		this.sido = sido;
+		this.gugun = gugun;
+		this.dong = dong;
+		this.bunji = bunji;
+		this.seq = seq;
+	}
+
+//	getters, setters
+	public String getZipcode() {
+		return zipcode==null?"":zipcode;
+	}
+	public String getSido() {
+		return sido==null?"":sido;
+	}
+	public String getGugun() {
+		return gugun==null?"":gugun;
+	}
+	public String getDong() {
+		return dong==null?"":dong;
+	}
+	public String getBunji() {
+		return bunji;
+	}
+	public int getSeq() {
+		return seq;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public void setSido(String sido) {
+		this.sido = sido;
+	}
+	public void setGugun(String gugun) {
+		this.gugun = gugun;
+	}
+	public void setDong(String dong) {
+		this.dong = dong;
+	}
+	public void setBunji(String bunji) {
+		this.bunji = bunji;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	
+}

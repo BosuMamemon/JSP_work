@@ -1,0 +1,51 @@
+<%@page import="com.address.ZipCode"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.address.AddressDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>zipCheck</title>
+	</head>
+	
+	<body>
+		<table>
+			<tr>
+				<td>
+					동이름 입력:
+					<input type="text" id="input" name="input">
+					<button type="button" id="send">검색</button>
+				</td>
+			</tr>
+		</table>
+		<div id="result"></div>
+	</body>
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		$(function() {
+			$("#send").click(function() {
+				sendIt();
+			})
+		})
+		
+		let sendIt = function() {
+			if($("#input").val()=="") {
+				alert("동 이름을 입력하세요.");
+				return;
+			}
+			
+			//.getJSON("갖고 갈 주소", "갖고 갈 데이터(딕셔너리형)", 콜백함수)이란?
+			// 자바의 자료형을 JSON 형태로 딸깍 한번에 파싱해버리는 함수
+			$.getJSON(
+					"03-06 zipProcess.jsp",
+					{"input": $("input").val()},
+					function(res) { // 이거 왜 되는거야?? 나중에 물어보기
+						alert(res)
+					}
+			)
+		}
+	</script>
+</html>

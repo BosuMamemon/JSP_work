@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="UTF-8">
-	<title>Insert</title>
+		<meta charset="UTF-8">
+		<title>Insert</title>
 	</head>
 	
 	<body>
-		<form action="02-28 insertProcess.jsp" id="form" method="post">
+		<form action="03-06 insertProcess.jsp" id="form" method="post">
 			<table border=1>
 				<tr>
 					<th colspan="2">주소록 등록하기</th>
@@ -20,13 +20,13 @@
 				<tr>
 					<td>우편번호</td>
 					<td>
-						<input type="text" name="zipcode" id="zipcode" size=5>
-						<button type="button" id="zipcodeButton">검색</button>
+						<input type="text" name="zipcode" id="zipcode" size=5 readonly="readonly">
+						<button type="button" id="zipcodeButton" onclick="zipfinder()">검색</button>
 					</td>
 				</tr>
 				<tr>
 					<td>주소</td>
-					<td><input type="text" name="address" id="address" size=50></td>
+					<td><input type="text" name="address" id="address" size=50 readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
@@ -45,4 +45,10 @@
 			</div>
 		</form>
 	</body>
+	
+	<script>
+		function zipfinder() {
+			window.open("03-06 zipCheck.jsp", "", "width=700 height=400")
+		}
+	</script>
 </html>

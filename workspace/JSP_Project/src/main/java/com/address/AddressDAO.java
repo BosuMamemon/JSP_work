@@ -29,6 +29,7 @@ public class AddressDAO {
 	}
 	
 //	메소드
+//		데이터 삽입
 	public void insert(Address addr) {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -52,6 +53,7 @@ public class AddressDAO {
 		
 	}
 	
+//		모든 커넥션 닫기
 	private void closeConnection(Connection conn, PreparedStatement ps, Statement st, ResultSet rs) {
 		try {
 			if(conn != null) conn.close();
@@ -63,6 +65,7 @@ public class AddressDAO {
 		}
 	}
 	
+//		전체보기
 	public ArrayList<Address> list() {
 		ArrayList<Address> aList = new ArrayList<>(); 
 		Connection conn = null;
@@ -94,6 +97,7 @@ public class AddressDAO {
 		return aList;
 	}
 	
+//		갯수 세기
 	public int getCount() {
 		int count = 0;
 		Connection conn = null;
@@ -118,6 +122,7 @@ public class AddressDAO {
 		return count;
 	}
 	
+//		디테일 불러오기(사실상 전체보기 ㅡㅡ)
 	public Address detail(int num) {
 		Address addr = null;
 		Connection conn = null;
@@ -147,6 +152,7 @@ public class AddressDAO {
 		return addr;
 	}
 	
+//		삭제하기
 	public void delete(int num) {
 		Connection conn = null;
 		Statement st = null;
@@ -163,6 +169,7 @@ public class AddressDAO {
 		}
 	}
 	
+//		수정하기
 	public void update(Address addr) {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -184,6 +191,110 @@ public class AddressDAO {
 		} finally {
 			this.closeConnection(conn, ps, ps, null);
 		}
+	}
+	
+//		우편번호 검색
+	public ArrayList<ZipCode> zipCodeRead(String input) {
+		ArrayList<ZipCode> zipCodes = new ArrayList<>();
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM zipcode WHERE dong LIKE '%" + input + "%'";
+			conn = DriverManager.getConnection(url, user, password);
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				ZipCode zc = new ZipCode(
+							rs.getString("zipcode"),
+							rs.getString("sido"),
+							rs.getString("gugun"),
+							rs.getString("dong"),
+							rs.getString("bunji"),
+							rs.getInt("seq")
+						);
+				zipCodes.add(zc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.closeConnection(conn, null, st, rs);
+		}
+		
+		return zipCodes;
+	}
+	
+//		전체보기(검색 포함 ㄷㄷ)
+	public ArrayList<Address> list(String field, String word) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		ArrayList<Address> aList = new ArrayList<>();
+		String sql = ""; 
+		
+		try {
+			conn = DriverManager.getConnection(url, user, password);
+			st = conn.createStatement();
+			
+			if(word.equals("") ) {
+				sql = "SELECT * FROM address ORDER BY num";	
+			} else {
+				sql = "SELECT * FROM address WHERE " + field + " LIKE '%" + word + "%' ORDER BY num";
+			}
+			
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				Address addr = new Address(
+						rs.getInt("num"),
+						rs.getString("name"),
+						rs.getString("zipcode"),
+						rs.getString("address"),
+						rs.getString("tel")
+					);
+				aList.add(addr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.closeConnection(conn, null, st, rs);
+		}
+		
+		return aList;
+	}
+	
+//		갯수 세기(검색 포함)
+	public int getCount(String field, String word) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = ""; 
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(url, user, password);
+			st = conn.createStatement();
+			
+			if(word.equals("") ) {
+				sql = "SELECT COUNT(*) FROM address";	
+			} else {
+				sql = "SELECT COUNT(*) FROM address WHERE " + field + " LIKE '%" + word + "%'";
+			}
+			
+			rs = st.executeQuery(sql);
+			
+			if(rs.next() ) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.closeConnection(conn, null, st, rs);
+		}
+		
+		return count;
 	}
 
 }

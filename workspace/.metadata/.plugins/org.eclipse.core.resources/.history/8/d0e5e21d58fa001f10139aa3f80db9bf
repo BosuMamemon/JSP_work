@@ -1,0 +1,40 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.address.Address"%>
+<%@page import="com.address.AddressDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>list</title>
+	</head>
+	
+	<body>
+		<table border=1 style="text-align:center;">
+			<tr>
+				<th colspan="3">
+					JQUERY ADDRESS LIST()
+				</th>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<th>주소</th>
+				<th>전화번호</th>
+			</tr>
+			
+			<tr>
+				<td colspan="3"><a href="03-06 insert.jsp" style="text-decoration:none; color:black; font-weight:bold;">추가하기</a></td>
+			</tr>
+		</table>
+		<br>
+		<form action="03-06 list.jsp">
+			<select name="field">
+				<option value="name">이름</option>
+				<option value="address">주소</option>
+			</select>
+			<input type="text" name="word">
+			<button type="submit">검색</button>
+		</form>
+	</body>
+</html>

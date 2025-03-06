@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="UTF-8">
-	<title>detail</title>
+		<meta charset="UTF-8">
+		<title>detail</title>
 	</head>
 	
 	<%
@@ -17,7 +17,7 @@
 	
 	<body>
 		<form action="02-28 updateProcess.jsp" method="post">
-			<table border=1 style="text-align: center;">
+			<table border=1>
 				<tr>
 					<th>번호</th>
 					<td><input type="text" name="num" value="<%= addr.getNum() %>" readonly="readonly" ></td>
@@ -30,13 +30,13 @@
 				<tr>
 					<th>우편번호</th>
 					<td>
-						<input type="text" name="zipcode" value="<%= addr.getZipcode() %>" size=15>
-						<button type="button">검색</button>
+						<input type="text" name="zipcode" value="<%= addr.getZipcode() %>" size=15 id="zipcode">
+						<button type="button" onclick="zipfinder()">검색</button>
 					</td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td><input type="text" name="address" value="<%= addr.getAddress() %>" size=40></td>
+					<td><input type="text" name="address" value="<%= addr.getAddress() %>" size=40 id="address"></td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
@@ -59,6 +59,10 @@
 			if(confirm("정말로 삭제하시겠습니까?")) {
 				location.href = "02-28 deleteProcess.jsp?num=<%= num %>";
 			}
+		}
+		
+		function zipfinder() {
+			window.open("03-06 zipCheck.jsp", "", "width=700 height=400")
 		}
 	</script>
 </html>

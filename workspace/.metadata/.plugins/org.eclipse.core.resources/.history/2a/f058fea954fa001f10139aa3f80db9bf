@@ -1,0 +1,69 @@
+<%@page import="com.address.ZipCode"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.address.AddressDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>zipCheck</title>
+	</head>
+	
+	<body>
+		<table>
+			<tr>
+				<td>
+					동이름 입력:
+					<input type="text" id="input" name="input">
+					<button type="button" id="send">검색</button>
+				</td>
+			</tr>
+		</table>
+		<div id="result"></div>
+	</body>
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		$(function() {
+			$("#send").click(function() {
+				sendIt();
+			})
+		})
+		
+		let sendIt = function() {
+			if($("#input").val()=="") {
+				alert("동 이름을 입력하세요.");
+				return;
+			}
+			
+			//.getJSON("갖고 갈 주소", "갖고 갈 데이터(딕셔너리형)", 콜백함수)이란?
+			// 자바의 자료형을 JSON 형태로 딸깍 한번에 파싱해버리는 함수
+			$.getJSON(
+					"03-06 zipProcess.jsp",
+					{"input": $("input").val()},
+					function(res) {
+						let str = "<table>"
+						// .each(반복을 돌릴 객체, 반복하면서 돌릴 함수) = 제이쿼리에서의 반복문
+						$.each(res, function(key, val) {
+							str += "<tr>"
+							str += "<td>" + val.zipcode + "</td>"
+							str += "<td>" + val.sido + "</td>"
+							str += "<td>" + val.gugun + "</td>"
+							str += "<td>" + val.dong + "</td>"
+							str += "<td>" + val.bunji + "</td>"
+							str += "</tr>"
+						})
+						str += "</table>"
+						// #result의 innerHTML에 str을 넣겠다는 의미임
+						$("#result").html(str)
+					}
+			)
+		}
+		
+		// .on(연결시킬이벤트, 이벤트가일어나는태그, 콜백함수) = 이벤트랑 태그를 연결시키는 함수
+		$("#result").on("click", "tr", function() {
+			let address = $("td:eq(1)", this)
+		})
+	</script>
+</html>

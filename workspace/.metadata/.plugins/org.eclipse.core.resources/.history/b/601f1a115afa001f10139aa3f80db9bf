@@ -1,0 +1,13 @@
+<%@page import="com.address.Address"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.address.AddressDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String field = request.getParameter("field");
+	String word = request.getParameter("word");
+	AddressDAO jdao = new AddressDAO();
+	ArrayList<Address> sArr = jdao.list(field, word);
+	int count = jdao.getCount(field, word);
+%>
