@@ -23,7 +23,7 @@
 			<thead>
 				<tr>
 					<th colspan="3">
-						JQUERY ADDRESS LIST(<%= count %>)
+						JQUERY ADDRESS LIST(<span id="spanCnt"><%= count %></span>)
 					</th>
 				</tr>
 				<tr>
@@ -64,7 +64,19 @@
 					type: "get",
 					url: "03-06 searchProcess.jsp",
 					data: {"field": $("#field").val(), "word": $("#word").val()},
-					success: function(res) { alert(res); },
+					success: function(res) {
+						let d = JSON.parse(res);
+						let str = "";
+						$.each(d.jArr, function(key, val) {
+							str += "<tr>";
+							str += "<td>" + val.name + "</td>";
+							str += "<td>" + val.address + "</td>";
+							str += "<td>" + val.tel + "</td>";
+							str += "</tr>";
+						})
+						$("table tbody").html(str);
+						$("#spanCnt").text(d.jCount);						
+					},
 					error: function(e) { alert(e + "error"); }
 				})
 			})
