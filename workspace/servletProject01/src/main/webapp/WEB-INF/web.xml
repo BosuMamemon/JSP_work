@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>servletProject01</display-name>
+  <!--  get방식 수정부분 -->
+    <!-- formResult -->
+  <servlet>
+      <!-- 자바 리소스 안에 패키지 및 FormServlet.java 클래스 만듦 -->
+    <!-- 내가 정하는 이름 -->
+	  <servlet-name>formServlet</servlet-name>
+	  <servlet-class>com.exam.controller.FormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>formServlet</servlet-name>
+      <url-pattern>/exam/formResult.go</url-pattern>
+  </servlet-mapping>
+  <!-- servlet-mapping안에 servlet-name의 값이랑 같은 값을 위의 servlet에서 같은 servlet-name을 찾아서 그 바로 밑에 서블릿클래스(10번줄)을 열게 됨.  -->
+<!-- get방식 수정끝 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+</web-app>
