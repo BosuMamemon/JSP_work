@@ -34,7 +34,7 @@ public class DBConnPool {
 //  메소드: 연결 해제(자원 반납)
     public void close() {
     	try {
-			if(this.rs!=null) rs.close();
+    		if(this.rs!=null) rs.close();
 			if(this.st!=null) st.close();
 			if(this.ps!=null) ps.close();
 			if(this.conn!=null) conn.close();

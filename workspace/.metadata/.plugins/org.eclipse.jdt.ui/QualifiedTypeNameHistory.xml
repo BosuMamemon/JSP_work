@@ -30,4 +30,7 @@
     <fullyQualifiedTypeName name="com.board.model.BoardDAOImpl"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.board.model.BoardDTO"/>
+    <fullyQualifiedTypeName name="com.comm.PageUtil"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

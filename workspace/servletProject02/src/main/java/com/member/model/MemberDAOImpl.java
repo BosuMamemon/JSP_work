@@ -29,7 +29,7 @@ public class MemberDAOImpl extends DBConnPool implements MemberDAO {
 			ps.setInt(6, member.getAdmin());
 			int updateCount = ps.executeUpdate();
 			
-			System.out.println(updateCount + "개의 데이터를 삽입했습니다.");
+			System.out.println("member 테이블에" + updateCount + "개의 행을 삽입했습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

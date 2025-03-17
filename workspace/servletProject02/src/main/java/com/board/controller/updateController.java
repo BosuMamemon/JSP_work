@@ -10,18 +10,19 @@ import java.io.IOException;
 import com.board.model.BoardDAO;
 import com.board.model.BoardDAOImpl;
 import com.board.model.BoardDTO;
+import com.utils.JSFunction;
 
 /**
- * Servlet implementation class WriteController
+ * Servlet implementation class updateController
  */
-@WebServlet("/board/write.do")
-public class WriteController extends HttpServlet {
+@WebServlet("/board/update.do")
+public class updateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WriteController() {
+    public updateController() {
         super();
     }
 
@@ -29,7 +30,16 @@ public class WriteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("boardWrite.jsp").forward(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		int num = Integer.parseInt(request.getParameter("num"));
+		BoardDAO dao = new BoardDAOImpl();
+		
+		BoardDTO board = dao.findByNum(num);
+		dao.close();
+		
+		request.setAttribute("board", board);
+		request.getRequestDispatcher("boardUpdate.jsp").forward(request, response);
 	}
 
 	/**
@@ -39,15 +49,21 @@ public class WriteController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		BoardDTO board = new BoardDTO();
-		board.setContent(request.getParameter("content"));
-		board.setEmail(request.getParameter("email"));
-		board.setSubject(request.getParameter("subject"));
-		board.setUserID(request.getParameter("userID"));
-	
 		BoardDAO dao = new BoardDAOImpl();
-		int result = dao.boardInsert(board);
 		
-		response.sendRedirect("/board/list.do");	// DB내용이 바뀐걸 반영하려면 sendRedirect를 써서 서블렛을 한번 끊어줘야함
+		board.setNum(Integer.parseInt(request.getParameter("num")));
+		board.setUserID(request.getParameter("userID"));
+		board.setSubject(request.getParameter("subject"));
+		board.setEmail(request.getParameter("email"));
+		board.setContent(request.getParameter("content"));
+		
+		int uCount = dao.boardUpdate(board);
+		
+		if(uCount > 0) {
+			JSFunction.alertLocation(response, "게시글을 수정했습니다.", "list.do");
+		} else {
+			JSFunction.alertBack(response, "수정 중 오류가 발생했습니다.");
+		}
 	}
 
 }

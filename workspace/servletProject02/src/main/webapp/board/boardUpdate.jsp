@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file = "../includes/header.jsp" %>
 		<div class="container mt-5">
-			<form action="write.do" method="post" id="form" name="form" onsubmit="return validateForm(this)">
-				<h3>Board Write</h3>
-
+			<form action="update.do" method="post" id="form" name="form" onsubmit="return validateForm(this)">
+				<h3>Board Update</h3>
+				<input type="hidden" name="num" value="${ board.num }">
 				<div class="row mb-3">
 					<div class="col">
 						<label for="userID">UserID: </label>
@@ -13,7 +13,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="subject">Subject: </label><br>
-					<input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
+					<input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject" value="${ board.subject }">
 				</div>
 				<div class="mb-3">
 					<label for="email">Email: </label>
@@ -21,10 +21,10 @@
 				</div>
 				<div class="mb-3">
 					<label for="content">Content:</label>
-					<textarea class="form-control" id="content" name="content" placeholder="Content goes here." rows=5></textarea>
+					<textarea class="form-control" id="content" name="content" placeholder="Content goes here." rows=5>${ board.content }</textarea>
 				</div>
 				<div class="mt-3">
-					<button type="submit" class="btn btn-primary" id="btnSend">글쓰기</button>				
+					<button type="submit" class="btn btn-primary" id="btnSend">수정</button>				
 				</div>
 			</form>
 		</div>
@@ -35,13 +35,13 @@
 			if(form.subject.value=="") {
 				alert("제목을 입력하세요.");
 				form.subject.focus();
-				return false;
+				return;
 			}
 			
 			if(form.content.value=="") {
 				alert("내용을 입력하세요.");
 				form.content.focus();
-				return false;
+				return;
 			}
 		}
 	</script>

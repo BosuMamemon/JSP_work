@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.board.model.BoardDAO;
 import com.board.model.BoardDAOImpl;
 import com.board.model.BoardDTO;
+import com.comm.PageUtil;
 
 /**
  * Servlet implementation class ListController
@@ -24,7 +25,6 @@ public class ListController extends HttpServlet {
      */
     public ListController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,8 +34,31 @@ public class ListController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		BoardDAO dao = new BoardDAOImpl();
-		ArrayList<BoardDTO> bList = dao.boardList();
+		
+//		페이징 관련
+		String pageNum = request.getParameter("pageNum")==null?"1":request.getParameter("pageNum");
+		int currentPage = Integer.parseInt(pageNum);
+		int pageSize = 10;
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		
+		ArrayList<BoardDTO> bList = dao.boardList(startRow, endRow);
+		int count = dao.boardCount();
+//		총 페이지 수
+		int totalPage = count / pageSize + (count%pageSize==0?0:1);
+		int blockPage = 3;
+		int startPage = ((currentPage - 1) / blockPage) * blockPage + 1;
+		int endPage = startPage + blockPage - 1;
+		if(endPage > totalPage) {
+			endPage = totalPage;
+		}
+		PageUtil page = new PageUtil(totalPage, blockPage, startPage, endPage, currentPage);
+		
+		dao.close();
+		
 		request.setAttribute("barr", bList);
+		request.setAttribute("count", count);
+		request.setAttribute("page", page);
 		
 		request.getRequestDispatcher("boardList.jsp").forward(request, response);
 	}

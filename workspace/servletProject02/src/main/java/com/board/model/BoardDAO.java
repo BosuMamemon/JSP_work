@@ -1,6 +1,8 @@
 package com.board.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public interface BoardDAO {
 
@@ -9,6 +11,10 @@ public interface BoardDAO {
 	
 	//	전체보기
 	public ArrayList<BoardDTO> boardList();
+	public ArrayList<BoardDTO> boardList(int startRow, int endRow);
+	
+	// p.506 검색포함한 전체보기
+	public List<BoardDTO> selectListPage(Map<String, Object> map);
 	
 	//	상세보기
 	public BoardDTO findByNum(int num);
@@ -17,9 +23,18 @@ public interface BoardDAO {
 	public int boardUpdate(BoardDTO board);
 	
 	//	삭제
-	public int boardDelete(BoardDTO board);
+	public int boardDelete(int num);
 	
 	//	게시글 수
 	public int boardCount();
+	
+	// p.506 검색포함한 카운트
+	public int selectCount(Map<String, Object> map);
+	
+	//	조회수 증가
+	public void updateReadCount(int num);
+	
+	//	커넥션 닫기
+	public void close();
 	
 }
