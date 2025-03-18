@@ -59,10 +59,10 @@ public class BoardDAOImpl extends DBConnPool implements BoardDAO {
 	public ArrayList<BoardDTO> boardList(int startRow, int endRow) {
 		ArrayList<BoardDTO> bList = new ArrayList<>();
 		String sql = "SELECT * FROM ("
-						+ "SELECT ROWNUM rn, b.* FROM ("
+						+ "SELECT ROWNUM rnum, b.* FROM ("
 							+ "SELECT * FROM board ORDER BY num DESC"
 						+ ") b "
-					+ ") WHERE rn between ? and ?";
+					+ ") WHERE rnum between ? and ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -84,6 +84,45 @@ public class BoardDAOImpl extends DBConnPool implements BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return bList;
+	}
+	
+//	p.506 검색관련
+	@Override
+	public List<BoardDTO> selectListPage(Map<String, Object> map) {
+		List<BoardDTO> bList = new ArrayList<>();
+		
+		String sql = "SELECT * FROM ("
+				+ "SELECT ROWNUM rnum, b.* FROM ("
+				+ "SELECT * FROM board ";
+		
+		if(map.get("searchWord")!=null) {
+			sql += "WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}
+		sql += "ORDER BY num DESC) b) WHERE rnum between ? and ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, map.get("startRow").toString());
+			ps.setString(2, map.get("endRow").toString());
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				BoardDTO board = new BoardDTO();
+				board.setContent(rs.getString("content"));
+				board.setEmail(rs.getString("email"));
+				board.setNum(rs.getInt("num"));
+				board.setReadCount(rs.getInt("readcount"));
+				board.setRegdate(rs.getString("regdate"));
+				board.setSubject(rs.getString("subject"));
+				board.setUserID(rs.getString("userid"));
+				
+				bList.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		
 		return bList;
 	}
@@ -164,9 +203,31 @@ public class BoardDAOImpl extends DBConnPool implements BoardDAO {
 		return result;
 	}
 
+//	p.506 검색 관련
+	@Override
+	public int selectCount(Map<String, Object> map) {
+		int result = 0;
+		String sql = "SELECT COUNT(*) FROM board";
+		if(map.get("searchWord")!=null) {
+			sql += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%'";
+		}
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	@Override
 	public void updateReadCount(int num) {
-		String sql = "UPDATE board SET readcount = readcount + 1 WHERE num =" + num;
+		String sql = "UPDATE board SET readcount = readcount + 1 WHERE num = " + num;
 		
 		try {
 			st = conn.createStatement();
@@ -176,18 +237,7 @@ public class BoardDAOImpl extends DBConnPool implements BoardDAO {
 		}
 	}
 
-//	p.506 검색관련
-	@Override
-	public List<BoardDTO> selectListPage(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public int selectCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 }

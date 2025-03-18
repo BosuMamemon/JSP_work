@@ -20,14 +20,19 @@
 						<a class="nav-link" href="/board/list.do">HOME</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/board/write.do">BOARD INSERT</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/board/list.do">BOARD LIST</a>
+						<a class="nav-link" href="/board/list.do">BOARD</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">PRODUCT</a>
 					</li>
+					<c:if test="${ sessionScope.sUser.admin == 1 }">
+						<li class="nav-item">
+							<a class="nav-link" href="#">회원목록</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/product/productInsert.do">상품등록</a>
+						</li>
+					</c:if>
 				</ul>
 				<ul class="navbar-nav">
 					<c:if test="${ sessionScope.sUser.admin == 1 }">

@@ -7,14 +7,18 @@ public class PageUtil {
 	private int startPage;
 	private int endPage;
 	private int currentPage;
+	private String searchField;
+	private String searchWord;
 	
-	public PageUtil(int totalPage, int blockPage, int startPage, int endPage, int currentPage) {
+	public PageUtil(int totalPage, int blockPage, int startPage, int endPage, int currentPage, String searchField, String searchWord) {
 		super();
 		this.totalPage = totalPage;
 		this.blockPage = blockPage;
 		this.startPage = startPage;
 		this.endPage = endPage;
 		this.currentPage = currentPage;
+		this.searchField = searchField;
+		this.searchWord = searchWord;
 	}
 	
 	public int getTotalPage() {
@@ -32,6 +36,13 @@ public class PageUtil {
 	public int getCurrentPage() {
 		return currentPage;
 	}
+	public String getSearchField() {
+		return searchField;
+	}
+	
+	public String getSearchWord() {
+		return searchWord;
+	}
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
@@ -46,6 +57,13 @@ public class PageUtil {
 	}
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
+	}
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
+	}
+	
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
 	}
 	
 }
