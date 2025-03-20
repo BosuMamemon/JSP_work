@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.board.config.BoardMapper">
+	<insert id="insertData" parameterType="com.board.model.BoardDTO">
+		INSERT INTO board(userid, subject, email, content)
+		VALUES(#{userID}, #{subject}, #{email}, #{content})
+	</insert>
+	<select id="listData" resultType="com.board.model.BoardDTO">
+		SELECT * FROM board ORDER BY num DESC
+	</select>
+	<select id="selectData" parameterType="Integer" resultType="com.board.model.BoardDTO">
+		SELECT * FROM board WHERE num = #{num}
+	</select>
+	<update id="updateData" parameterType="com.board.model.BoardDTO">
+		UPDATE board
+		SET
+			subject = #{subject},
+			content = #{content}
+		WHERE num = #{num}
+	</update>
+	<delete id="deleteData" parameterType="Integer">
+		DELETE FROM board WHERE num = #{num}
+	</delete>
+</mapper>

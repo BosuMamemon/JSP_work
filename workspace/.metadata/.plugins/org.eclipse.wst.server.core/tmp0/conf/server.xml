@@ -159,7 +159,7 @@
 </Context>
       <Context docBase="C:\JHM\JSP\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\servletProject01" path="/servletProject01" reloadable="true" source="org.eclipse.jst.jee.server:servletProject01"/>
       <Context docBase="C:\JHM\JSP\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\servletProject02" path="" reloadable="true" source="org.eclipse.jst.jee.server:servletProject02"/>
-      </Host>
+      <Context docBase="C:\JHM\JSP\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mybatisProject" path="/mybatisProject" reloadable="true" source="org.eclipse.jst.jee.server:mybatisProject"/></Host>
     </Engine>
   </Service>
 </Server>

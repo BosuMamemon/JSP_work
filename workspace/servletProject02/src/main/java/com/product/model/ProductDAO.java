@@ -30,7 +30,7 @@ public class ProductDAO extends DBConnPool {
 //	전체보기 메소드
 	public ArrayList<ProductDTO> productList() {
 		ArrayList<ProductDTO> pList = new ArrayList<>();
-		String sql = "SELECT * FROM product";
+		String sql = "SELECT * FROM product ORDER BY pnum";
 		
 		try {
 			st = conn.createStatement();

@@ -17,13 +17,13 @@
 			<div class="container-fluid">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="/board/list.do">HOME</a>
+						<a class="nav-link" href="/product/productList.do">HOME</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/board/list.do">BOARD</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">PRODUCT</a>
+						<a class="nav-link" href="/product/productList.do">PRODUCT</a>
 					</li>
 					<c:if test="${ sessionScope.sUser.admin == 1 }">
 						<li class="nav-item">

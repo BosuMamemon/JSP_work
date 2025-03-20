@@ -22,11 +22,8 @@
     <fullyQualifiedTypeName name="java.security.SecureRandomSpi"/>
     <fullyQualifiedTypeName name="jakarta.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="com.board.model.boardDTO"/>
-    <fullyQualifiedTypeName name="com.board.model.BoardDAO"/>
     <fullyQualifiedTypeName name="com.board.model.BoardDAOImpl"/>
-    <fullyQualifiedTypeName name="com.board.model.BoardDTO"/>
     <fullyQualifiedTypeName name="com.comm.PageUtil"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.member.model.MemberDTO"/>
     <fullyQualifiedTypeName name="com.board.model.CommentsDAO"/>
@@ -39,7 +36,19 @@
     <fullyQualifiedTypeName name="com.comm.DBConnPool"/>
     <fullyQualifiedTypeName name="jakarta.servlet.annotation.MultipartConfig"/>
     <fullyQualifiedTypeName name="com.fileUpload.FileUtil"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="com.product.model.ProductDTO"/>
     <fullyQualifiedTypeName name="com.product.model.ProductDAO"/>
+    <fullyQualifiedTypeName name="com.product.model.ProductDTO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactoryBuilder"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="com.address.model.AddressDTO"/>
+    <fullyQualifiedTypeName name="com.address.model.AddressDAO"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
+    <fullyQualifiedTypeName name="com.address.config.MybatisManager"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.board.config.MybatisManager"/>
+    <fullyQualifiedTypeName name="com.board.model.BoardDAO"/>
+    <fullyQualifiedTypeName name="com.board.model.BoardDTO"/>
 </qualifiedTypeNameHistroy>
